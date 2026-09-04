@@ -1,0 +1,230 @@
+
+    <!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Option Strategy Tool Morning Dashboard</title>
+        <style>
+          :root {
+            --bg: #eef1f5; --panel: rgba(255,255,255,0.94); --line: rgba(15,23,42,0.08); --ink: #16181d; --muted: #677489;
+            --accent: #175b52; --shadow: 0 16px 40px rgba(15,23,42,0.08);
+          }
+          body { margin: 0; font-family: "SF Pro Text","SF Pro Display",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; background: linear-gradient(180deg,#f6f8fb,#edf1f5); color: var(--ink); }
+          .shell { max-width: 1680px; margin: 0 auto; padding: 10px 12px 24px; }
+          .hero, .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+          .hero { padding: 12px 14px; }
+          .hero-top { display: flex; justify-content: space-between; gap: 12px; align-items: start; }
+          .hero h1 { margin: 0; font-size: 1.65rem; letter-spacing: -0.04em; }
+          .hero p { margin: 4px 0 0; color: var(--muted); font-size: 0.86rem; }
+          .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+          .chip { padding: 5px 9px; border-radius: 999px; background: rgba(244,247,250,0.95); border: 1px solid var(--line); font-size: 0.75rem; }
+          .dashboard-nav { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+          .nav-link { color: var(--accent); text-decoration: none; padding: 5px 9px; border-radius: 999px; background: rgba(23,91,82,0.08); border: 1px solid rgba(23,91,82,0.14); font-size: 0.75rem; }
+          .panel { margin-top: 12px; padding: 12px; overflow: auto; }
+          .panel h2 { margin: 0 0 4px; font-size: 1.08rem; letter-spacing: -0.03em; }
+          .subtle { color: var(--muted); font-size: 0.82rem; }
+          .table-wrap { overflow: auto; margin-top: 10px; }
+          table { width: 100%; border-collapse: collapse; min-width: 1260px; font-size: 0.75rem; }
+          th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 8px 8px; }
+          th { position: sticky; top: 0; background: #f8fafc; z-index: 1; color: var(--muted); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
+          .table-sub { margin-top: 2px; color: var(--muted); font-size: 0.72rem; }
+          .spy-summary { display: grid; grid-template-columns: repeat(6, minmax(0,1fr)); gap: 8px; margin-top: 10px; }
+          .spy-box { border: 1px solid var(--line); border-radius: 12px; padding: 8px; background: rgba(247,249,252,0.98); }
+          .spy-box .label { color: var(--muted); font-size: 0.65rem; margin-bottom: 2px; }
+          .spy-box .value { font-size: 0.82rem; font-weight: 600; }
+          .spy-panel { padding: 10px; }
+          .spy-card {
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.84);
+            padding: 10px;
+          }
+          .spy-terminal-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(249,250,252,0.98));
+          }
+          .card-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: start;
+            margin-bottom: 6px;
+          }
+          .card-header h3 {
+            margin: 0 0 2px;
+            font-size: 0.98rem;
+            letter-spacing: -0.03em;
+          }
+          .pill-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            justify-content: end;
+          }
+          .pill {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            border: 1px solid transparent;
+            background: #f6eee6;
+          }
+          .pill-positive { background: rgba(31, 122, 61, 0.12); color: #1f7a3d; border-color: rgba(31, 122, 61, 0.18); }
+          .pill-warning { background: rgba(171, 93, 0, 0.12); color: #ab5d00; border-color: rgba(171, 93, 0, 0.18); }
+          .pill-danger { background: rgba(143, 29, 29, 0.12); color: #8f1d1d; border-color: rgba(143, 29, 29, 0.18); }
+          .pill-info { background: rgba(23, 91, 82, 0.11); color: #175b52; border-color: rgba(23, 91, 82, 0.16); }
+          .pill-neutral { background: rgba(103, 116, 137, 0.12); color: #677489; border-color: rgba(103, 116, 137, 0.16); }
+          .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 6px;
+            margin: 6px 0 4px;
+          }
+          .metric-card {
+            background: rgba(247,249,252,0.98);
+            border: 1px solid rgba(15, 23, 42, 0.06);
+            border-radius: 12px;
+            padding: 7px 8px;
+            min-height: 50px;
+          }
+          .metric-label { color: var(--muted); font-size: 0.64rem; margin-bottom: 3px; }
+          .metric-value { font-size: 0.84rem; font-weight: 600; letter-spacing: -0.02em; }
+          .spy-quote-strip {
+            display: flex;
+            justify-content: space-between;
+            gap: 14px;
+            align-items: center;
+            margin: 6px 0 8px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            background: #101720;
+            color: #f4f7fb;
+            border: 1px solid rgba(124, 144, 167, 0.22);
+          }
+          .spy-quote-main { display: grid; gap: 4px; }
+          .spy-symbol-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+          .spy-symbol { font-size: 0.92rem; font-weight: 700; letter-spacing: -0.02em; }
+          .spy-product { font-size: 0.68rem; color: #9cafc8; text-transform: uppercase; letter-spacing: 0.06em; }
+          .spy-last-row { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+          .spy-last-price { font-size: 1.12rem; font-weight: 700; letter-spacing: -0.03em; }
+          .spy-last-change { font-size: 0.82rem; font-weight: 600; }
+          .positive { color: #1f7a3d; }
+          .negative { color: #8f1d1d; }
+          .spy-quote-side {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
+            min-width: 280px;
+          }
+          .spy-quote-side div { display: grid; gap: 2px; text-align: right; }
+          .spy-quote-side span { font-size: 0.64rem; color: #9cafc8; text-transform: uppercase; letter-spacing: 0.06em; }
+          .spy-quote-side strong { font-size: 0.8rem; color: #f4f7fb; }
+          .spy-chart-panel { margin-bottom: 8px; }
+          .chart-wrap {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(124, 144, 167, 0.22);
+            background: linear-gradient(180deg, #141d29, #101720);
+          }
+          .mini-chart { display: block; width: 100%; height: auto; }
+          .chart-bg { fill: #182230; }
+          .chart-grid { stroke: rgba(126, 148, 170, 0.22); stroke-width: 1; shape-rendering: crispEdges; }
+          .chart-grid-vertical { stroke: rgba(126, 148, 170, 0.16); }
+          .axis-label-terminal { fill: #8ea3bf; font-size: 10px; text-anchor: middle; }
+          .axis-price-label { fill: #8ea3bf; font-size: 10px; text-anchor: start; }
+          .candle-wick { stroke-width: 1.8; stroke-linecap: round; }
+          .candle-body { stroke-width: 1.2; }
+          .candle-up { stroke: #1ec987; fill: rgba(30, 201, 135, 0.35); }
+          .candle-down { stroke: #ff7b4d; fill: rgba(255, 123, 77, 0.28); }
+          .section-block { margin-top: 8px; }
+          .section-block h4 {
+            margin: 0 0 8px;
+            font-size: 0.74rem;
+            letter-spacing: 0.01em;
+            text-transform: uppercase;
+            color: var(--muted);
+          }
+          .section-split { display: grid; gap: 8px; }
+          .compact-split { margin-top: 0; grid-template-columns: 1fr; }
+          .two-up { grid-template-columns: 1fr; }
+          .spy-lower-grid { margin-top: 8px; }
+          .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.76rem;
+            table-layout: fixed;
+          }
+          .data-table th, .data-table td {
+            padding: 5px 5px;
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            vertical-align: top;
+            overflow-wrap: anywhere;
+          }
+          .data-table th {
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 0.64rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+          }
+          ul { margin: 0; padding-left: 18px; font-size: 0.8rem; }
+          li + li { margin-top: 5px; }
+          @media (max-width: 900px) { .hero-top { flex-direction: column; } .spy-summary { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+          @media (max-width: 1180px) {
+            .spy-quote-strip, .spy-quote-side { display: grid; grid-template-columns: 1fr; }
+            .spy-quote-side div { text-align: left; }
+            .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+          }
+        </style>
+      </head>
+      <body>
+        <main class="shell">
+          <section class="hero">
+            <div class="hero-top">
+              <div>
+                <h1>Option Strategy Tool Morning Dashboard</h1>
+                <p>Advisory-only morning surface for the earnings short-premium lane and the SPY same-day short-put lane.</p>
+              </div>
+              <div class="chip">Last refreshed September 04, 2026 at 07:02 AM Pacific</div>
+            </div>
+            <div class="meta">
+              <div class="chip">8:00 AM Review</div>
+              <div class="chip">Early read for the active earnings window and the first SPY scan.</div>
+            </div>
+            <div class="dashboard-nav"><a class="nav-link" href="./morning-dashboard.html">Main dashboard</a><a class="nav-link" href="./morning-dashboard-table.html">Full table</a><a class="nav-link" href="./morning-dashboard-scanner.html">Scanner table</a><a class="nav-link" href="./morning-dashboard-8am.html">8:00 AM backup</a><a class="nav-link" href="./morning-dashboard-9am.html">9:00 AM backup</a><a class="nav-link" href="./morning-dashboard-10am.html">10:00 AM backup</a><a class="nav-link" href="./earnings-reaction-audit-amc.html">AMC reaction audit</a></div>
+          </section>
+          <section class="panel">
+            <h2>Scanner Table</h2>
+            <div class="subtle">Compact cross-company scan</div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+          <tr>
+            <th>Company</th><th>Price</th><th>Market Cap</th><th>Implied Move</th><th>ATM IV</th><th>Worst Abs</th><th>Sentiment</th><th>Side</th><th>Contracts</th>
+          </tr>
+        </thead>
+                <tbody><tr><td colspan="12">No earnings candidates available.</td></tr></tbody>
+              </table>
+            </div>
+          </section>
+          
+          <section class="panel">
+            <h2>SPY Snapshot</h2>
+            <div class="subtle">Same-day SPY short-put read for 8:00 AM Pacific</div>
+            <div class="spy-summary">
+              <div class="spy-box"><div class="label">Underlying</div><div class="value">—</div></div>
+              <div class="spy-box"><div class="label">Strike</div><div class="value">—</div></div>
+              <div class="spy-box"><div class="label">Entry Credit</div><div class="value">$0.04</div></div>
+              <div class="spy-box"><div class="label">6x Warning</div><div class="value">$0.24</div></div>
+              <div class="spy-box"><div class="label">Contracts</div><div class="value">53 contracts</div></div>
+              <div class="spy-box"><div class="label">Macro Events</div><div class="value">6</div></div>
+            </div>
+          </section>
+        
+        </main>
+      </body>
+    </html>
+    
