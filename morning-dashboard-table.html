@@ -188,11 +188,11 @@
                 <h1>Option Strategy Tool Morning Dashboard</h1>
                 <p>Advisory-only morning surface for the earnings short-premium lane and the SPY same-day short-put lane.</p>
               </div>
-              <div class="chip">Last refreshed October 09, 2026 at 07:03 AM Pacific</div>
+              <div class="chip">Last refreshed October 09, 2026 at 01:34 PM Pacific</div>
             </div>
             <div class="meta">
-              <div class="chip">8:00 AM Review</div>
-              <div class="chip">Early read for the active earnings window and the first SPY scan.</div>
+              <div class="chip">10:00 AM Review</div>
+              <div class="chip">Decision read for the active earnings window, with the mature SPY view alongside it.</div>
             </div>
             <div class="dashboard-nav"><a class="nav-link" href="./morning-dashboard.html">Main dashboard</a><a class="nav-link" href="./morning-dashboard-table.html">Full table</a><a class="nav-link" href="./morning-dashboard-scanner.html">Scanner table</a><a class="nav-link" href="./morning-dashboard-8am.html">8:00 AM backup</a><a class="nav-link" href="./morning-dashboard-9am.html">9:00 AM backup</a><a class="nav-link" href="./morning-dashboard-10am.html">10:00 AM backup</a><a class="nav-link" href="./earnings-reaction-audit-amc.html">AMC reaction audit</a></div>
           </section>
@@ -206,7 +206,63 @@
             <th>Company</th><th>Price</th><th>Market Cap</th><th>Implied Move</th><th>ATM IV</th><th>Worst / Best</th><th>Call 2x / 3x</th><th>Put 2x / 3x</th><th>Sentiment</th><th>Side</th><th>Contracts</th>
           </tr>
         </thead>
-                <tbody><tr><td colspan="12">No earnings candidates available.</td></tr></tbody>
+                <tbody>
+                <tr>
+                  <td><strong>DPZ</strong><div class="table-sub">BMO in 4 days</div></td>
+                  <td>$309.36</td>
+                  <td>$9.8B</td>
+                  <td>7.1%</td>
+                  <td>64.5%</td>
+                  <td>-7.2% / +6.4%</td>
+                  <td>$360 / $380</td>
+                  <td>$260 / $240</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>GS</strong><div class="table-sub">BMO in 4 days</div></td>
+                  <td>$895.52</td>
+                  <td>$266.3B</td>
+                  <td>4.7%</td>
+                  <td>42.8%</td>
+                  <td>-3.6% / +4.6%</td>
+                  <td>$980 / $1,020</td>
+                  <td>$810 / $770</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>JPM</strong><div class="table-sub">BMO in 4 days</div></td>
+                  <td>$333.01</td>
+                  <td>$890.6B</td>
+                  <td>3.6%</td>
+                  <td>32.4%</td>
+                  <td>-2.3% / +1.3%</td>
+                  <td>$350 / $358</td>
+                  <td>$318 / $310</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>FDX</strong><div class="table-sub">AMC in 3 days</div></td>
+                  <td>$291.74</td>
+                  <td>$68.7B</td>
+                  <td>3.0%</td>
+                  <td>26.9%</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                </tbody>
               </table>
             </div>
           </section>
@@ -217,9 +273,9 @@
       <header class="card-header">
         <div>
           <h3>SPY Intraday Setup</h3>
-          <div class="subtle">Same-day SPY short-put read for 8:00 AM Pacific</div>
+          <div class="subtle">Same-day SPY short-put read for 10:00 AM Pacific</div>
         </div>
-        <div class="pill-row"><span class="pill pill-danger">Unavailable</span><span class="pill pill-info">Target $0.04</span><span class="pill pill-info">0DTE</span></div>
+        <div class="pill-row"><span class="pill pill-danger">Unavailable</span><span class="pill pill-info">Target $0.04</span><span class="pill pill-info">0DTE</span><span class="pill pill-warning">Headline risk</span></div>
       </header>
       <section class="spy-quote-strip">
         <div class="spy-quote-main">
@@ -274,7 +330,7 @@
             </div>
       <div class="section-block">
         <h4>Warnings</h4>
-        <ul><li>No valid 8:00 AM SPY snapshot is available yet.</li><li>Entry window has not opened yet.</li><li>Trend filter failed; SPY does not look flat-to-up right now.</li><li>VWAP confirmation cannot be checked.</li><li>Bid/ask spread is too wide for a small-credit trade.</li></ul>
+        <ul><li>No valid 10:00 AM SPY snapshot is available yet.</li><li>Trend filter failed; SPY does not look flat-to-up right now.</li><li>VWAP confirmation cannot be checked.</li><li>Bid/ask spread is too wide for a small-credit trade.</li><li>OTM distance cannot be calculated.</li></ul>
       </div>
       <div class="section-block">
         <h4>Macro Events Today</h4>
@@ -290,15 +346,8 @@
       </thead>
       <tbody>
             <tr>
-              <td>7:00 AM Pacific</td>
-              <td>Michigan Consumer Sentiment Prel OCT</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>1:00 PM Pacific</td>
-              <td>Fed Collins Speech</td>
+              <td>9:50 AM Pacific</td>
+              <td>Fed Hammack Speech</td>
               <td>Low</td>
               <td>Upcoming</td>
             </tr>
