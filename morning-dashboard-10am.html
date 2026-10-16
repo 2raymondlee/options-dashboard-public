@@ -686,6 +686,48 @@
             }
           }
           @media (max-width: 760px) {
+            .macro-table colgroup,
+            .macro-table thead {
+              display: none;
+            }
+            .macro-table,
+            .macro-table tbody {
+              display: block;
+              width: 100%;
+            }
+            .macro-table tbody tr {
+              display: grid;
+              grid-template-columns: minmax(0, 1fr) auto;
+              gap: 6px 12px;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--line);
+            }
+            .macro-table td:nth-child(n) {
+              width: auto;
+              min-width: 0;
+              padding: 0;
+              border: 0;
+              white-space: normal;
+              overflow-wrap: anywhere;
+              word-break: normal;
+            }
+            .macro-table td:nth-child(1) {
+              grid-column: 1;
+              grid-row: 1;
+            }
+            .macro-table td:nth-child(2) {
+              grid-column: 1 / -1;
+              grid-row: 2;
+              font-weight: 600;
+            }
+            .macro-table td:nth-child(3) {
+              grid-column: 2;
+              grid-row: 1;
+            }
+            .macro-table td:nth-child(4) {
+              grid-column: 1 / -1;
+              grid-row: 3;
+            }
             .shell {
               padding: 16px 16px 40px;
             }
@@ -727,7 +769,7 @@
         <main class="shell">
           <section class="hero">
             <div class="hero-tools">
-              <div class="refresh-chip">Last refreshed October 16, 2026 at 07:01 AM Pacific</div>
+              <div class="refresh-chip">Last refreshed October 16, 2026 at 07:30 AM Pacific</div>
               <button class="refresh-button" type="button" onclick="triggerDashboardRefresh()">Refresh entire dashboard</button>
             </div>
             <h1>Option Strategy Tool Morning Dashboard</h1>
