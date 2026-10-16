@@ -686,6 +686,32 @@
             }
           }
           @media (max-width: 760px) {
+            .tracker-header {
+              flex-wrap: wrap;
+            }
+            .tracker-table thead {
+              display: none;
+            }
+            .tracker-table,
+            .tracker-table tbody {
+              display: block;
+              width: 100%;
+            }
+            .tracker-table tbody tr {
+              display: grid;
+              grid-template-columns: minmax(0, 1fr);
+              gap: 6px;
+              padding: 10px 0;
+              border-bottom: 1px solid var(--line);
+            }
+            .tracker-table td:nth-child(n) {
+              width: auto;
+              min-width: 0;
+              padding: 0;
+              border: 0;
+              white-space: normal;
+              overflow-wrap: anywhere;
+            }
             .macro-table colgroup,
             .macro-table thead {
               display: none;
@@ -758,6 +784,12 @@
         </style>
         <script>
           function triggerDashboardRefresh() {
+            if (window.location.hostname !== "127.0.0.1" && window.location.hostname !== "localhost") {
+              var latestUrl = new URL(window.location.href);
+              latestUrl.searchParams.set("ts", Date.now());
+              window.location.href = latestUrl.toString();
+              return;
+            }
             var currentPath = window.location.pathname || "";
             var target = currentPath.split("/").pop() || "morning-dashboard.html";
             var refreshUrl = "/refresh?target=" + encodeURIComponent(target);
@@ -769,7 +801,7 @@
         <main class="shell">
           <section class="hero">
             <div class="hero-tools">
-              <div class="refresh-chip">Last refreshed October 16, 2026 at 07:30 AM Pacific</div>
+              <div class="refresh-chip">Last refreshed October 16, 2026 at 07:36 AM Pacific</div>
               <button class="refresh-button" type="button" onclick="triggerDashboardRefresh()">Refresh entire dashboard</button>
             </div>
             <h1>Option Strategy Tool Morning Dashboard</h1>
@@ -1043,7 +1075,7 @@
       <header class="tracker-header">
         <div>
           <h2>Trump / Administration Market Tracker</h2>
-          <div class="subtle">Fetched 2026-10-16T14:01:41Z</div>
+          <div class="subtle">Fetched 2026-10-16T14:36:09Z</div>
         </div>
         <div class="pill-row">
           <span class="pill pill-danger">Active</span>
@@ -1085,16 +1117,6 @@
             <tr>
               <td><span class="pill pill-warning">Medium</span></td>
               <td>
-                <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxNcjhXcjdfNUlqd2V4c1RzT2JyUXk0VktiSjc1VDRPRjFiM1dYemlMVFB3dTU0Y0x6R2ktSXhybWZzT2hyLVZPc1h0ZTg2bHlTSENpYUoxbjBLdWRYRlNRUFZOMDNJU0VkR2ZuaVJEQXRhcW9UUVlhOTdGdlM4c1ZsOVZnMA?oc=5" target="_blank" rel="noreferrer">President Trump’s Tariffs Are Pricing Kids Out of Music - Cato Institute</a>
-                <div class="tracker-summary">President Trump’s Tariffs Are Pricing Kids Out of Music&amp;nbsp;&amp;nbsp;Cato Institute</div>
-              </td>
-              <td>Tariffs / Trade</td>
-              <td>Google News market-risk query</td>
-            </tr>
-            
-            <tr>
-              <td><span class="pill pill-warning">Medium</span></td>
-              <td>
                 <a href="https://news.google.com/rss/articles/CBMirAFBVV95cUxOUW1idXlSVm1fUVQtdFk1T0pYTU8tcEx2YTBiQnQ4M0ZmeDFDeGpXUUpqMEZRbC0zT0g4dkoySTlXM05fbkNRZE5RbzFZcEktTHpBYlJxcklTaHpkRHgzRnAyakp4cGVIQjRITGtWZG1XZTlNdF9LcmlVRjJIaDQweHRxR0NUQS1jeUYtc0NsWWlEMTNTcEd3dUhFZjZMYnhWbU9CZVNKWS1TTjBz?oc=5" target="_blank" rel="noreferrer">Trump says he is talking to Russia and China about denuclearization - Reuters</a>
                 <div class="tracker-summary">Trump says he is talking to Russia and China about denuclearization&amp;nbsp;&amp;nbsp;Reuters</div>
               </td>
@@ -1107,6 +1129,16 @@
               <td>
                 <a href="https://news.google.com/rss/articles/CBMipAFBVV95cUxOU0ZlREFzVk9KZWFNcnpIS3ptbHZTdUtsUmFqejRMODltLUpOSkFER1UwcDJJaHBfWm9MaU5nV2ZTQUV6cnJXLTVVOXNSUVV4aVJXbmtYcXZnXzgzMVZKTmhyYzZGYWtvUXN1M1d4VXhFRk4zVGFJYzhpaFdJdkd1VVFZb3daSmFiNndaQXl0VjVwMjNlYkNBUGJVS2ZvS0gwWDBySQ?oc=5" target="_blank" rel="noreferrer">Trump&#x27;s tariffs are changing the global trade ecosystem - Al Majalla</a>
                 <div class="tracker-summary">Trump&#x27;s tariffs are changing the global trade ecosystem&amp;nbsp;&amp;nbsp;Al Majalla</div>
+              </td>
+              <td>Tariffs / Trade</td>
+              <td>Google News market-risk query</td>
+            </tr>
+            
+            <tr>
+              <td><span class="pill pill-warning">Medium</span></td>
+              <td>
+                <a href="https://news.google.com/rss/articles/CBMitAFBVV95cUxQZ2ZFV1VXU2NiTEs2SVljQnpNU0gtbEVPWHJMeUNuX1p3LXFtQ05WSk5NZ1U0SG1PM0JXb3JMX3J2V3Vic0NxdVdjVVFtN3ZoQ3hCRXlsWUVEd1lfdjg1MzlGTGRXTW50N0ktUFZmQklQT3FfZ05zb3FaZ2JtM2FuY1F3OVJpV2MzNW1wcmpRVzg2ZTlxcE54ZDlfV1JNVkhBb1dZMnBxZFpyT1BKSW8wTGRNSG4?oc=5" target="_blank" rel="noreferrer">US Steel Prices Climb to Four-Year High as Trump’s Tariffs Bite - Bloomberg.com</a>
+                <div class="tracker-summary">US Steel Prices Climb to Four-Year High as Trump’s Tariffs Bite&amp;nbsp;&amp;nbsp;Bloomberg.com</div>
               </td>
               <td>Tariffs / Trade</td>
               <td>Google News market-risk query</td>
