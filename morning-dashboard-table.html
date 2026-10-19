@@ -188,11 +188,11 @@
                 <h1>Option Strategy Tool Morning Dashboard</h1>
                 <p>Advisory-only morning surface for the earnings short-premium lane and the SPY same-day short-put lane.</p>
               </div>
-              <div class="chip">Last refreshed October 16, 2026 at 08:06 AM Pacific</div>
+              <div class="chip">Last refreshed October 19, 2026 at 12:30 PM Pacific</div>
             </div>
             <div class="meta">
-              <div class="chip">8:00 AM Review</div>
-              <div class="chip">Early read for the active earnings window and the first SPY scan.</div>
+              <div class="chip">10:00 AM Review</div>
+              <div class="chip">Decision read for the active earnings window, with the mature SPY view alongside it.</div>
             </div>
             <div class="dashboard-nav"><a class="nav-link" href="./morning-dashboard.html">Main dashboard</a><a class="nav-link" href="./morning-dashboard-table.html">Full table</a><a class="nav-link" href="./morning-dashboard-scanner.html">Scanner table</a><a class="nav-link" href="./morning-dashboard-8am.html">8:00 AM backup</a><a class="nav-link" href="./morning-dashboard-9am.html">9:00 AM backup</a><a class="nav-link" href="./morning-dashboard-10am.html">10:00 AM backup</a><a class="nav-link" href="./earnings-reaction-audit-amc.html">AMC reaction audit</a></div>
           </section>
@@ -206,7 +206,63 @@
             <th>Company</th><th>Price</th><th>Market Cap</th><th>Implied Move</th><th>ATM IV</th><th>Worst / Best</th><th>Call 2x / 3x</th><th>Put 2x / 3x</th><th>Sentiment</th><th>Side</th><th>Contracts</th>
           </tr>
         </thead>
-                <tbody><tr><td colspan="12">No earnings candidates available.</td></tr></tbody>
+                <tbody>
+                <tr>
+                  <td><strong>MMM</strong><div class="table-sub">BMO tomorrow</div></td>
+                  <td>$162.93</td>
+                  <td>$83.5B</td>
+                  <td>5.8%</td>
+                  <td>69.5%</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>RTX</strong><div class="table-sub">BMO tomorrow</div></td>
+                  <td>$193.02</td>
+                  <td>$247.0B</td>
+                  <td>5.4%</td>
+                  <td>64.9%</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>LMT</strong><div class="table-sub">BMO tomorrow</div></td>
+                  <td>$551.83</td>
+                  <td>$116.6B</td>
+                  <td>4.5%</td>
+                  <td>54.3%</td>
+                  <td>-8.2% / +6.0%</td>
+                  <td>$645 / $690</td>
+                  <td>$460 / $415</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                
+                <tr>
+                  <td><strong>PM</strong><div class="table-sub">BMO tomorrow</div></td>
+                  <td>$201.89</td>
+                  <td>$296.8B</td>
+                  <td>4.4%</td>
+                  <td>52.1%</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>— / —</td>
+                  <td>Pending</td>
+                  <td>Chain ready</td>
+                  <td>Pending</td>
+                </tr>
+                </tbody>
               </table>
             </div>
           </section>
@@ -217,9 +273,9 @@
       <header class="card-header">
         <div>
           <h3>SPY Intraday Setup</h3>
-          <div class="subtle">Same-day SPY short-put read for 8:00 AM Pacific</div>
+          <div class="subtle">Same-day SPY short-put read for 10:00 AM Pacific</div>
         </div>
-        <div class="pill-row"><span class="pill pill-danger">Unavailable</span><span class="pill pill-info">Target $0.04</span><span class="pill pill-info">0DTE</span></div>
+        <div class="pill-row"><span class="pill pill-danger">Unavailable</span><span class="pill pill-info">Target $0.04</span><span class="pill pill-info">0DTE</span><span class="pill pill-warning">Headline risk</span></div>
       </header>
       <section class="spy-quote-strip">
         <div class="spy-quote-main">
@@ -274,7 +330,7 @@
             </div>
       <div class="section-block">
         <h4>Warnings</h4>
-        <ul><li>No valid 8:00 AM SPY snapshot is available yet.</li><li>Entry window has not opened yet.</li><li>Trend filter failed; SPY does not look flat-to-up right now.</li><li>VWAP confirmation cannot be checked.</li><li>Bid/ask spread is too wide for a small-credit trade.</li></ul>
+        <ul><li>No valid 10:00 AM SPY snapshot is available yet.</li><li>Trend filter failed; SPY does not look flat-to-up right now.</li><li>VWAP confirmation cannot be checked.</li><li>Bid/ask spread is too wide for a small-credit trade.</li><li>OTM distance cannot be calculated.</li></ul>
       </div>
       <div class="section-block">
         <h4>Macro Events Today</h4>
@@ -288,63 +344,7 @@
           <th>Status</th>
         </tr>
       </thead>
-      <tbody>
-            <tr>
-              <td>5:30 AM Pacific</td>
-              <td>NY Fed Services Activity Index OCT</td>
-              <td>Low</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Industrial Production (M-o-M)</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Industrial Production (Y-o-Y)</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Capacity Utilization (M-o-M)</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Industrial Production MoM SEP</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Capacity Utilization SEP</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>6:15 AM Pacific</td>
-              <td>Industrial Production YoY SEP</td>
-              <td>Medium</td>
-              <td>Upcoming</td>
-            </tr>
-            
-            <tr>
-              <td>3:00 PM Pacific</td>
-              <td>Fed Goolsbee Speech</td>
-              <td>Low</td>
-              <td>Upcoming</td>
-            </tr>
-            </tbody>
+      <tbody><tr><td colspan="4">No scheduled U.S. macro events loaded.</td></tr></tbody>
     </table>
     
       </div>
